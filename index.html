@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BF CLUB - Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(8px); 
+            z-index: -1;
+            transform: scale(1.1); 
+        }
+
+        .container {
+            text-align: center;
+            max-width: 400px; 
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            width: 100%;
+            max-width: 300px; 
+            height: auto;
+            margin-bottom: 25px; 
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+
+        /* 🌟 แถบคะแนนรีวิว 5 ดาว */
+        .rating-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 8px 15px;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px; /* ปรับระยะห่างหลังย้ายตำแหน่ง */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .rating-stars {
+            color: #ffcc00;
+            margin-right: 5px;
+        }
+
+        /* 📦 การ์ดการันตี 2 ข้อ */
+        .trust-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 340px;
+            gap: 10px;
+            margin-bottom: 25px; /* ปรับระยะห่างก่อนเข้าสู่โซนปุ่ม */
+        }
+        .trust-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px 5px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 400;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .trust-icon {
+            font-size: 20px;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            margin-bottom: 30px; /* เว้นระยะก่อนลงไปที่สไลด์ภาพ */
+        }
+
+        .btn-img {
+            width: 100%;
+            max-width: 240px; 
+            height: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-img:hover {
+            transform: translateY(-3px) scale(1.03);
+            filter: brightness(1.1);
+        }
+
+        /* โซนสไลด์ */
+        .slider-wrapper {
+            width: 100%;
+            max-width: 340px; 
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            margin-bottom: 30px; 
+        }
+        .slider {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider img {
+            width: 100%;
+            height: auto;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        /* กล่องยอดสั่งซื้อล่าสุด Realtime */
+        .order-panel {
+            width: 100%;
+            max-width: 360px; 
+            background: rgba(24, 24, 28, 0.95); 
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 18px 14px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: left;
+        }
+
+        .order-header-wrapper {
+            text-align: center;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .order-header {
+            font-size: 17px;
+            font-weight: 600;
+            color: #ffcc00; 
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .live-clock {
+            font-size: 12px;
+            color: #8a8a93;
+        }
+
+        .order-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 420px;
+            overflow: hidden; 
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px 14px;
+            border-radius: 14px;
+            border-left: 3px solid #2ea34a; 
+            animation: fadeInDown 0.4s ease-out; 
+            gap: 10px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .item-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .item-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(46, 163, 74, 0.15);
+            border: 1px solid rgba(46, 163, 74, 0.3);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .item-user {
+            font-size: 13px;
+            font-weight: 400;
+            color: #f4f4f5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .item-time {
+            font-size: 11px;
+            color: #71717a;
+            margin-top: 3px;
+        }
+
+        .item-right {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 110px; 
+        }
+
+        .item-amount {
+            font-size: 15px;
+            font-weight: 600;
+            color: #2ea34a; 
+            margin-bottom: 2px;
+        }
+
+        .item-status {
+            font-size: 11px;
+            color: #2ea34a;
+            background: rgba(46, 163, 74, 0.15);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 400;
+            white-space: nowrap; 
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png" alt="Logo" class="logo">
+        
+        <div class="rating-box">
+            <span class="rating-stars">⭐⭐⭐⭐⭐</span> 4.9/5.0 จากผู้ใช้จริง
+        </div>
+
+        <div class="trust-container">
+            <div class="trust-card">
+                <span class="trust-icon">🛡️</span>
+                <span>ดูแลตลอด 24 ชั่วโมง</span>
+            </div>
+            <div class="trust-card">
+                <span class="trust-icon">⭐</span>
+                <span>มั่นคง 100% ไม่มีโกง</span>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="https://app.phoenix88.online/register?key=Jj" target="_blank">
+                <img src="button1.png" alt="สมัครสมาชิก" class="btn-img">
+            </a>
+            <a href="https://lin.ee/QYdmEwU" target="_blank">
+                <img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img">
+            </a>
+        </div>
+
+        <div class="slider-wrapper">
+            <div class="slider" id="slider">
+                <img src="slide1.png" alt="Slide 1">
+                <img src="slide2.png" alt="Slide 2">
+                <img src="slide3.png" alt="Slide 3">
+                <img src="slide4.png" alt="Slide 4">
+                <img src="slide5.png" alt="Slide 5">
+            </div>
+        </div>
+
+        <div class="order-panel">
+            <div class="order-header-wrapper">
+                <div class="order-header">💰รายการถอนล่าสุด💰</div>
+                <div class="live-clock" id="liveClock">กำลังโหลดเวลา...</div>
+            </div>
+            
+            <div class="order-list" id="orderList"></div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- โค้ดควบคุมสไลด์ภาพเลื่อนอัตโนมัติ ---
+        const slider = document.getElementById('slider');
+        let index = 0;
+        const totalImages = 5; 
+        setInterval(() => {
+            index++;
+            if (index >= totalImages) { index = 0; }
+            slider.style.transform = `translateX(${-index * 100}%)`;
+        }, 3000); 
+
+        // --- โค้ดนาฬิกา Realtime ---
+        function updateClock() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('th-TH', options);
+            const timeStr = now.toLocaleTimeString('th-TH');
+            document.getElementById('liveClock').innerHTML = `${dateStr} ${timeStr}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // --- ระบบสุ่มเบอร์โทรศัพท์มั่วๆ ---
+        const prefixes = ["080", "081", "082", "083", "084", "085", "086", "087", "088", "089", "090", "091", "092", "093", "094", "095", "096", "097", "098", "099", "061", "062", "063", "064", "065"];
+        const times = ["เมื่อสักครู่นี้", "1 นาทีที่แล้ว", "2 นาทีที่แล้ว", "3 นาทีที่แล้ว", "4 นาทีที่แล้ว"];
+
+        function getRandomAmount() {
+            const amounts = [350, 590, 890, 1200, 1590, 2350, 3190, 4500, 5990, 7500, 9200, 12500, 18900];
+            const randomPrice = amounts[Math.floor(Math.random() * amounts.length)];
+            return randomPrice.toLocaleString('th-TH') + " ฿";
+        }
+
+        function createRandomOrder(timeText) {
+            const pref = prefixes[Math.floor(Math.random() * prefixes.length)];
+            const midDigit = Math.floor(Math.random() * 10); 
+            const userStr = `เบอร์โทรศัพท์: ${pref}-${midDigit}x-xxxx`;
+            const amountStr = getRandomAmount();
+            const timeStr = timeText ? timeText : times[Math.floor(Math.random() * times.length)];
+
+            return `
+                <div class="order-item">
+                    <div class="item-left">
+                        <div class="item-icon">📦</div>
+                        <div class="item-info">
+                            <div class="item-user">${userStr}</div>
+                            <div class="item-time">${timeStr}</div>
+                        </div>
+                    </div>
+                    <div class="item-right">
+                        <div class="item-amount">${amountStr}</div>
+                        <div class="item-status">✓ จ่ายแล้ว</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        const orderList = document.getElementById('orderList');
+
+        orderList.innerHTML = 
+            createRandomOrder("เมื่อสักครู่นี้") +
+            createRandomOrder("1 นาทีที่แล้ว") +
+            createRandomOrder("3 นาทีที่แล้ว") +
+            createRandomOrder("5 นาทีที่แล้ว");
+
+        function startOrderLoop() {
+            const randomTime = Math.floor(Math.random() * (8000 - 4000 + 1)) + 4000; 
+            setTimeout(() => {
+                const newOrder = createRandomOrder("เมื่อสักครู่นี้");
+                orderList.insertAdjacentHTML('afterbegin', newOrder);
+                if (orderList.children.length > 4) {
+                    orderList.removeChild(orderList.lastChild);
+                }
+                if(orderList.children[1]) orderList.children[1].querySelector('.item-time').innerText = "1 นาทีที่แล้ว";
+                if(orderList.children[2]) orderList.children[2].querySelector('.item-time').innerText = "2 นาทีที่แล้ว";
+                if(orderList.children[3]) orderList.children[3].querySelector('.item-time').innerText = "4 นาทีที่แล้ว";
+                startOrderLoop();
+            }, randomTime);
+        }
+        startOrderLoop();
+    </script>
+
+</body>
+</html>
