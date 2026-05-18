@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHOENIX - 88</title>
+    <title>PHOENIX88 - Official</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
@@ -57,7 +57,6 @@
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
         }
 
-        /* 🌟 แถบคะแนนรีวิว 5 ดาว */
         .rating-box {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
@@ -66,7 +65,7 @@
             color: #fff;
             font-size: 14px;
             font-weight: bold;
-            margin-bottom: 15px; /* ปรับระยะห่างหลังย้ายตำแหน่ง */
+            margin-bottom: 15px;
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
         .rating-stars {
@@ -74,23 +73,22 @@
             margin-right: 5px;
         }
 
-        /* 📦 การ์ดการันตี 2 ข้อ */
         .trust-container {
             display: flex;
             justify-content: space-between;
             width: 100%;
             max-width: 340px;
-            gap: 10px;
-            margin-bottom: 25px; /* ปรับระยะห่างก่อนเข้าสู่โซนปุ่ม */
+            gap: 8px;
+            margin-bottom: 25px;
         }
         .trust-card {
             flex: 1;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            padding: 12px 5px;
+            padding: 10px 2px;
             color: #fff;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 400;
             display: flex;
             flex-direction: column;
@@ -98,7 +96,7 @@
             gap: 6px;
         }
         .trust-icon {
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .btn-container {
@@ -106,7 +104,7 @@
             flex-direction: column;
             gap: 15px;
             width: 100%;
-            margin-bottom: 30px; /* เว้นระยะก่อนลงไปที่สไลด์ภาพ */
+            margin-bottom: 30px;
         }
 
         .btn-img {
@@ -121,7 +119,6 @@
             filter: brightness(1.1);
         }
 
-        /* โซนสไลด์ */
         .slider-wrapper {
             width: 100%;
             max-width: 340px; 
@@ -143,7 +140,6 @@
             flex-shrink: 0;
         }
 
-        /* กล่องยอดสั่งซื้อล่าสุด Realtime */
         .order-panel {
             width: 100%;
             max-width: 360px; 
@@ -226,6 +222,7 @@
             display: flex;
             flex-direction: column;
             min-width: 0;
+            flex: 1; 
         }
 
         .item-user {
@@ -234,7 +231,7 @@
             color: #f4f4f5;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
+            text-overflow: clip; 
         }
 
         .item-time {
@@ -250,7 +247,7 @@
             align-items: flex-end;
             justify-content: center;
             flex-shrink: 0;
-            width: 110px; 
+            width: 95px; 
         }
 
         .item-amount {
@@ -282,7 +279,7 @@
         </div>
 
         <div class="trust-container">
-            <div class="trust-card">
+                        <div class="trust-card">
                 <span class="trust-icon">🛡️</span>
                 <span>ดูแลตลอด 24 ชั่วโมง</span>
             </div>
@@ -294,7 +291,7 @@
         
         <div class="btn-container">
             <a href="https://app.phoenix88.online/register?key=Jj" target="_blank">
-                <img src="button1.png" alt="สมัครสมาชิก" class="btn-img">
+                <img src="button1.png" alt="สั่งซื้อสินค้า" class="btn-img">
             </a>
             <a href="https://lin.ee/QYdmEwU" target="_blank">
                 <img src="button2.png" alt="ติดต่อสอบถาม" class="btn-img">
@@ -323,7 +320,6 @@
     </div>
 
     <script>
-        // --- โค้ดควบคุมสไลด์ภาพเลื่อนอัตโนมัติ ---
         const slider = document.getElementById('slider');
         let index = 0;
         const totalImages = 5; 
@@ -333,71 +329,114 @@
             slider.style.transform = `translateX(${-index * 100}%)`;
         }, 3000); 
 
-        // --- โค้ดนาฬิกา Realtime ---
         function updateClock() {
             const now = new Date();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             const dateStr = now.toLocaleDateString('th-TH', options);
             const timeStr = now.toLocaleTimeString('th-TH');
-            document.getElementById('liveClock').innerHTML = `${dateStr} ${timeStr}`;
+            document.getElementById('liveClock').innerHTML = dateStr + " " + timeStr;
         }
         setInterval(updateClock, 1000);
         updateClock();
 
-        // --- ระบบสุ่มเบอร์โทรศัพท์มั่วๆ ---
-        const prefixes = ["080", "081", "082", "083", "084", "085", "086", "087", "088", "089", "090", "091", "092", "093", "094", "095", "096", "097", "098", "099", "061", "062", "063", "064", "065"];
-        const times = ["เมื่อสักครู่นี้", "1 นาทีที่แล้ว", "2 นาทีที่แล้ว", "3 นาทีที่แล้ว", "4 นาทีที่แล้ว"];
+        // ดึงชุดนำหน้า 3 ตัวแรกจากที่พี่อัปโหลดมาให้
+        const prefixes = [
+	    "080", "081", "082", "083", "084", "085", "086", "087", "088", "089", 
+	    "090", "091", "092", "093", "094", "095", "096", "097", "098", "099", 
+	    "061", "062", "063", "064", "065", "081", "085", "092", "095", "063",
+	    "080", "083", "087", "090", "094", "098", "061", "064", "082", "086",
+	    "089", "091", "093", "096", "097", "099", "062", "065", "084", "088",
+	    "081", "082", "085", "087", "090", "092", "095", "098", "061", "063",
+	    "080", "083", "086", "089", "091", "094", "097", "099", "062", "064",
+	    "084", "085", "088", "090", "093", "096", "098", "061", "065", "082",
+	    "081", "083", "087", "089", "092", "094", "095", "097", "063", "064",
+	    "080", "084", "086", "088", "091", "093", "096", "099", "062", "065"
+        ];
+
+        // รายการราคา 200 รายการตามไฟล์ฐานข้อมูลเดิมของพี่
+        const amounts = [
+            12500, 15900, 18900, 24500, 29900, 32000, 35900, 38500, 42000, 44900,
+            11500, 16800, 21900, 27500, 43500,
+            89, 150, 350, 590, 890, 1200, 1590, 2350, 3190, 4500,
+            59, 250, 450, 690, 990, 1350, 1690, 2450, 3290, 4800,
+            99, 190, 390, 750, 850, 1150, 1890, 2200, 3500, 5500,
+            49, 290, 490, 650, 950, 1290, 1990, 2690, 3900, 4990,
+            79, 120, 550, 790, 880, 1490, 1750, 2850, 3800, 5200,
+            39, 180, 320, 580, 820, 1250, 1650, 2100, 3400, 6200,
+            69, 220, 420, 680, 920, 1450, 1790, 2550, 3700, 7200,
+            85, 260, 480, 720, 980, 1380, 1850, 2800, 3600, 8500,
+            95, 300, 520, 850, 999, 1480, 1950, 2900, 3990, 9200,
+            45, 110, 380, 520, 780, 1100, 1420, 2150, 3100, 4200,
+            65, 160, 420, 630, 850, 1300, 1550, 2400, 3300, 5100,
+            75, 195, 460, 710, 910, 1390, 1720, 2650, 3450, 5800,
+            88, 230, 495, 760, 960, 1495, 1820, 2750, 3650, 6400,
+            90, 280, 540, 810, 1050, 1580, 1820, 2890, 3820, 6900,
+            35, 125, 310, 560, 840, 1180, 1610, 2250, 3250, 7400,
+            55, 175, 440, 670, 890, 1240, 1680, 2380, 3350, 7990,
+            72, 215, 470, 740, 930, 1360, 1750, 2590, 3550, 8200,
+            82, 245, 515, 785, 975, 1440, 1880, 2790, 3750, 8800,
+            92, 295, 565, 835, 1150, 1540, 1980, 2950, 3890, 9500
+        ];
 
         function getRandomAmount() {
-            const amounts = [350, 590, 890, 1200, 1590, 2350, 3190, 4500, 5990, 7500, 9200, 12500, 18900];
             const randomPrice = amounts[Math.floor(Math.random() * amounts.length)];
             return randomPrice.toLocaleString('th-TH') + " ฿";
         }
 
+        // 🚀 ปรับฟังก์ชันสร้างเบอร์โทรให้ปลอดภัยสูงสุด (ปิดเลขท้าย 4 หลักยาวเป็น XXXX)
         function createRandomOrder(timeText) {
-            const pref = prefixes[Math.floor(Math.random() * prefixes.length)];
-            const midDigit = Math.floor(Math.random() * 10); 
-            const userStr = `เบอร์โทรศัพท์: ${pref}-${midDigit}x-xxxx`;
+            const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)]; // 3 ตัวแรก เช่น 081
+            const digit4 = Math.floor(Math.random() * 10); // ตัวเลขหลักที่ 4
+            const digit5 = Math.floor(Math.random() * 10); // ตัวเลขหลักที่ 5
+            const digit6 = Math.floor(Math.random() * 10); // ตัวเลขหลักที่ 6
+            
+            // ประกอบโครงสร้างความยาว 10 หลักปลอดภัยสูงสุด: 0XX-XXX-XXXX (เช่น 081-416-XXXX)
+            const userStr = "คุณลูกค้า: " + randomPrefix + "-" + digit4 + digit5 + digit6 + "-XXXX";
             const amountStr = getRandomAmount();
-            const timeStr = timeText ? timeText : times[Math.floor(Math.random() * times.length)];
 
-            return `
-                <div class="order-item">
-                    <div class="item-left">
-                        <div class="item-icon">📦</div>
-                        <div class="item-info">
-                            <div class="item-user">${userStr}</div>
-                            <div class="item-time">${timeStr}</div>
-                        </div>
-                    </div>
-                    <div class="item-right">
-                        <div class="item-amount">${amountStr}</div>
-                        <div class="item-status">✓ จ่ายแล้ว</div>
-                    </div>
-                </div>
-            `;
+            return '<div class="order-item">' +
+                    '<div class="item-left">' +
+                        '<div class="item-icon">🛍️</div>' +
+                        '<div class="item-info">' +
+                            '<div class="item-user">' + userStr + '</div>' +
+                            '<div class="item-time">' + timeText + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="item-right">' +
+                        '<div class="item-amount">' + amountStr + '</div>' +
+                        '<div class="item-status">✓ จ่ายแล้ว</div>' +
+                    '</div>' +
+                '</div>';
         }
 
         const orderList = document.getElementById('orderList');
 
+        // แสดงผลรายการเริ่มต้นบนหน้าจอ
         orderList.innerHTML = 
             createRandomOrder("เมื่อสักครู่นี้") +
             createRandomOrder("1 นาทีที่แล้ว") +
-            createRandomOrder("3 นาทีที่แล้ว") +
-            createRandomOrder("5 นาทีที่แล้ว");
+            createRandomOrder("2 นาทีที่แล้ว") +
+            createRandomOrder("4 นาทีที่แล้ว");
 
+        // หน่วงเวลาสุ่มสร้างรายการสั่งซื้อใหม่เรื่อย ๆ ทุก 30 - 90 วินาที
         function startOrderLoop() {
-            const randomTime = Math.floor(Math.random() * (8000 - 4000 + 1)) + 4000; 
+            const minTime = 30000; 
+            const maxTime = 90000; 
+            const randomTime = Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime; 
+
             setTimeout(() => {
                 const newOrder = createRandomOrder("เมื่อสักครู่นี้");
                 orderList.insertAdjacentHTML('afterbegin', newOrder);
+                
                 if (orderList.children.length > 4) {
                     orderList.removeChild(orderList.lastChild);
                 }
+                
                 if(orderList.children[1]) orderList.children[1].querySelector('.item-time').innerText = "1 นาทีที่แล้ว";
                 if(orderList.children[2]) orderList.children[2].querySelector('.item-time').innerText = "2 นาทีที่แล้ว";
                 if(orderList.children[3]) orderList.children[3].querySelector('.item-time').innerText = "4 นาทีที่แล้ว";
-                startOrderLoop();
+                
+                startOrderLoop(); 
             }, randomTime);
         }
         startOrderLoop();
