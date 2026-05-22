@@ -51,9 +51,9 @@
 
         .logo {
             width: 100%;
-            max-width: 300px; 
+            max-width: 260px; 
             height: auto;
-            margin-bottom: 25px; 
+            margin-bottom: 20px; 
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
         }
 
@@ -102,22 +102,98 @@
         .btn-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             width: 100%;
-            margin-bottom: 30px;
+            align-items: center;
+            margin-bottom: 25px;
         }
 
         .btn-img {
             width: 100%;
-            max-width: 240px; 
+            max-width: 280px; 
             height: auto;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: block;
         }
         .btn-img:hover {
             transform: translateY(-3px) scale(1.03);
             filter: brightness(1.1);
         }
+
+        /* ----------------------------------------- */
+        /* Social Proof Styles (ปรับเหลือ 1 กล่องรีวิว)  */
+        /* ----------------------------------------- */
+        .social-proof-panel {
+            width: 100%;
+            max-width: 340px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            padding: 16px 14px;
+            margin-bottom: 25px;
+            color: #fff;
+            text-align: left;
+        }
+        .proof-title {
+            font-size: 13px;
+            color: #ffcc00;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 12px;
+        }
+        .stat-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 8px;
+            border-radius: 10px;
+        }
+        .stat-num {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2ea34a;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: #a1a1aa;
+        }
+        .review-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 75px; /* ล็อกความสูงเพื่อไม่ให้หน้าเว็บกระตุกขยับตอนเปลี่ยนคำ */
+        }
+        .review-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            border-left: 3px solid #ffcc00;
+            animation: fadeInDown 0.5s ease-out; 
+        }
+        .review-user {
+            font-weight: 400;
+            color: #f4f4f5;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        .review-text {
+            color: #d4d4d8;
+            line-height: 1.4;
+        }
+        /* ----------------------------------------- */
 
         .slider-wrapper {
             width: 100%;
@@ -126,12 +202,12 @@
             overflow: hidden;
             border-radius: 15px; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
         }
         .slider {
             display: flex;
             width: 100%;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .slider img {
             width: 100%;
@@ -154,7 +230,7 @@
 
         .order-header-wrapper {
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 15px;
             padding-bottom: 10px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -272,14 +348,14 @@
 <body>
 
     <div class="container">
-        <img src="logo.png" alt="Logo" class="logo">
+        <img src="logo.png" alt="BF CLUB Logo" class="logo">
         
         <div class="rating-box">
-            <span class="rating-stars">⭐⭐⭐⭐⭐</span> 4.9/5.0 จากผู้ใช้จริง
+            <span class="rating-stars">⭐⭐⭐⭐⭐</span> 4.9/5.0
         </div>
 
         <div class="trust-container">
-                        <div class="trust-card">
+            <div class="trust-card">
                 <span class="trust-icon">🛡️</span>
                 <span>ดูแลตลอด 24 ชั่วโมง</span>
             </div>
@@ -298,6 +374,23 @@
             </a>
         </div>
 
+        <div class="social-proof-panel">
+            <div class="proof-title">🏆การรีวิวจากผู้ใช้งานจริง🏆</div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-num">15,400+</div>
+                    <div class="stat-label">ยูสเซอร์ทั้งหมด</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">99.8%</div>
+                    <div class="stat-label">พึงพอใจบริการ</div>
+                </div>
+            </div>
+
+            <div class="review-box" id="dynamicReviewBox"></div>
+        </div>
+
         <div class="slider-wrapper">
             <div class="slider" id="slider">
                 <img src="slide1.png" alt="Slide 1">
@@ -310,7 +403,7 @@
 
         <div class="order-panel">
             <div class="order-header-wrapper">
-                <div class="order-header">💰รายการถอนล่าสุด💰</div>
+                <div class="order-header">💰 รายการล่าสุด 💰</div>
                 <div class="live-clock" id="liveClock">กำลังโหลดเวลา...</div>
             </div>
             
@@ -320,15 +413,81 @@
     </div>
 
     <script>
+        // --- ข้อมูลนำหน้าเบอร์โทรศัทพ์ ---
+        const prefixes = [
+            "080", "081", "082", "083", "084", "085", "086", "087", "088", "089", 
+            "090", "091", "092", "093", "094", "095", "096", "097", "098", "099", 
+            "061", "062", "063", "064", "065"
+        ];
+
+        // --- คลังข้อความรีวิวจากลูกค้า (จัดเต็ม 20 ข้อความ) ---
+        const reviewTexts = [
+            "ตอนแรกก็ลังเล แต่พอลองแล้วระบบไวมาก ได้ของจริง แอดมินคุยดีประทับใจครับ",
+            "มั่นใจเจ้านี้ที่สุดแล้วค่ะ เติมกี่รอบก็ไม่มีปัญหา แนะนำเพื่อนๆ มาใช้กันหลายคนแล้ว",
+            "ระบบออโต้เสร็จไวมาก ไม่ถึง 2 นาทีเงินเข้าเลย มั่นคงไว้ใจได้จริงครับ",
+            "ใช้บริการเว็บนี้ประจำ ปลอดภัย 100% ไม่มีประวัติโกง สบายใจได้เลยค่ะ",
+            "แอดมินบริการดีตอบแชตไวมาก แนะนำเลยครับ ไม่ผิดหวังแน่นอน",
+            "ลองเปิดใจใช้ครั้งแรกติดใจเลย ของเขาดีจริง ระบบเสถียรมากค่ะ",
+            "24 ชั่วโมงของจริง ดึกแค่ไหนก็ทำรายการได้ไวปานสายฟ้า",
+            "ยืนยันอีกเสียงว่าได้จริงชัวร์ครับ",
+            "ชอบความซื่อสัตย์ของเว็บนี้ จ่ายเต็มจำนวนไม่จุกจิก",
+            "ระบบใช้งานง่ายมาก มือใหม่ก็ทำรายการได้สบายๆ ไม่ซับซ้อนเลยค่ะ",
+            "ถอนปุ๊บเข้าปั๊บ ไวเวอร์! ยกให้เป็นที่หนึ่งในใจเลยตอนนี้",
+            "แอดมินดูแลดียิ่งกว่าวีไอพี มีปัญหาทักปุ๊บตอบปั๊บ ไม่ทิ้งลูกค้าแน่นอน",
+            "เว็บตรงไม่ผ่านเอเยนต์ มั่นคงทางการเงินสูงมาก เล่นได้เท่าไหร่จ่ายจริงครบทุกบาท",
+            "หามานานเจ้านี้แหละที่จริงใจ ไม่จกตา ได้รับของจริงรวดเร็วทันใจ",
+            "การันตีความปลอดภัยเลยครับ ตั้งแต่ใช้มาไม่เคยเจอปัญหาเลย ดีเยี่ยมจริงๆ",
+            "ประทับใจความเร็วในการปรับยอด ยอดเยอะแค่ไหนก็เสร็จภายในแป๊บเดียว",
+            "เพื่อนแนะนำมาอีกที ทีแรกไม่เชื่อ พอลองใช้เองบอกเลยว่ารู้งี้เล่นเว็บนี้นานแล้ว",
+            "เครดิตแน่น รีวิวเพียบขนาดนี้ สบายใจหายห่วงเลยคับ",
+            "ยกให้เป็นที่ 1 ของวงการเลยครับ ระบบดีที่สุดตั้งแต่เคยเจอมา",
+            "จ่ายชัวร์ มั่นคง มั่นใจ ใช้งานคลับนี้ไม่มีคำว่าผิดหวังแน่นอนค่ะ"
+        ];
+
+        // ฟังก์ชันสุ่มเบอร์โทรลูกค้าให้อยู่ในฟอร์แมต [คุณลูกค้า: 0XX-XXX-XXXX]
+        function generateRandomUser() {
+            const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            const d4 = Math.floor(Math.random() * 10);
+            const d5 = Math.floor(Math.random() * 10);
+            const d6 = Math.floor(Math.random() * 10);
+            return "คุณลูกค้า: " + randomPrefix + "-" + d4 + d5 + d6 + "-XXXX";
+        }
+
+        // --- ระบบสุ่มเปลี่ยนรีวิว 1 ข้อความ ทุกๆ 15 วินาที ---
+        function renderDynamicReview() {
+            const box = document.getElementById('dynamicReviewBox');
+            const randomIndex = Math.floor(Math.random() * reviewTexts.length);
+            
+            // สุ่มจำนวนดาวแบบสมจริง (สุ่มให้ได้ 5 ดาวบ่อยกว่า 4 ดาว)
+            const stars = Math.random() > 0.15 ? "⭐⭐⭐⭐⭐" : "⭐⭐⭐⭐•";
+
+            box.innerHTML = `
+                <div class="review-card">
+                    <div class="review-user">${generateRandomUser()} <span style="color:#ffcc00">${stars}</span></div>
+                    <div class="review-text">"${reviewTexts[randomIndex]}"</div>
+                </div>
+            `;
+        }
+        
+        // เรียกใช้ครั้งแรกทันที และเปลี่ยนทุกๆ 15,000 มิลลิวินาที (15 วินาที)
+        renderDynamicReview();
+        setInterval(renderDynamicReview, 15000);
+
+
+        // --- ระบบสไลด์ภาพลื่นไหล ---
         const slider = document.getElementById('slider');
         let index = 0;
         const totalImages = 5; 
+        
         setInterval(() => {
             index++;
-            if (index >= totalImages) { index = 0; }
+            if (index >= totalImages) { 
+                index = 0; 
+            }
             slider.style.transform = `translateX(${-index * 100}%)`;
         }, 3000); 
 
+        // --- ระบบนาฬิกาเวลาปัจจุบัน ---
         function updateClock() {
             const now = new Date();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -339,43 +498,11 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // ดึงชุดนำหน้า 3 ตัวแรกจากที่พี่อัปโหลดมาให้
-        const prefixes = [
-	    "080", "081", "082", "083", "084", "085", "086", "087", "088", "089", 
-	    "090", "091", "092", "093", "094", "095", "096", "097", "098", "099", 
-	    "061", "062", "063", "064", "065", "081", "085", "092", "095", "063",
-	    "080", "083", "087", "090", "094", "098", "061", "064", "082", "086",
-	    "089", "091", "093", "096", "097", "099", "062", "065", "084", "088",
-	    "081", "082", "085", "087", "090", "092", "095", "098", "061", "063",
-	    "080", "083", "086", "089", "091", "094", "097", "099", "062", "064",
-	    "084", "085", "088", "090", "093", "096", "098", "061", "065", "082",
-	    "081", "083", "087", "089", "092", "094", "095", "097", "063", "064",
-	    "080", "084", "086", "088", "091", "093", "096", "099", "062", "065"
-        ];
-
-        // รายการราคา 200 รายการตามไฟล์ฐานข้อมูลเดิมของพี่
+        // --- ระบบสุ่มออเดอร์แจ้งเตือนเงินเข้าบอร์ดล่าง ---
         const amounts = [
             12500, 15900, 18900, 24500, 29900, 32000, 35900, 38500, 42000, 44900,
-            11500, 16800, 21900, 27500, 43500,
             89, 150, 350, 590, 890, 1200, 1590, 2350, 3190, 4500,
-            59, 250, 450, 690, 990, 1350, 1690, 2450, 3290, 4800,
-            99, 190, 390, 750, 850, 1150, 1890, 2200, 3500, 5500,
-            49, 290, 490, 650, 950, 1290, 1990, 2690, 3900, 4990,
-            79, 120, 550, 790, 880, 1490, 1750, 2850, 3800, 5200,
-            39, 180, 320, 580, 820, 1250, 1650, 2100, 3400, 6200,
-            69, 220, 420, 680, 920, 1450, 1790, 2550, 3700, 7200,
-            85, 260, 480, 720, 980, 1380, 1850, 2800, 3600, 8500,
-            95, 300, 520, 850, 999, 1480, 1950, 2900, 3990, 9200,
-            45, 110, 380, 520, 780, 1100, 1420, 2150, 3100, 4200,
-            65, 160, 420, 630, 850, 1300, 1550, 2400, 3300, 5100,
-            75, 195, 460, 710, 910, 1390, 1720, 2650, 3450, 5800,
-            88, 230, 495, 760, 960, 1495, 1820, 2750, 3650, 6400,
-            90, 280, 540, 810, 1050, 1580, 1820, 2890, 3820, 6900,
-            35, 125, 310, 560, 840, 1180, 1610, 2250, 3250, 7400,
-            55, 175, 440, 670, 890, 1240, 1680, 2380, 3350, 7990,
-            72, 215, 470, 740, 930, 1360, 1750, 2590, 3550, 8200,
-            82, 245, 515, 785, 975, 1440, 1880, 2790, 3750, 8800,
-            92, 295, 565, 835, 1150, 1540, 1980, 2950, 3890, 9500
+            250, 450, 690, 990, 1350, 1690, 2450, 4800, 5500, 7990
         ];
 
         function getRandomAmount() {
@@ -383,22 +510,13 @@
             return randomPrice.toLocaleString('th-TH') + " ฿";
         }
 
-        // 🚀 ปรับฟังก์ชันสร้างเบอร์โทรให้ปลอดภัยสูงสุด (ปิดเลขท้าย 4 หลักยาวเป็น XXXX)
         function createRandomOrder(timeText) {
-            const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)]; // 3 ตัวแรก เช่น 081
-            const digit4 = Math.floor(Math.random() * 10); // ตัวเลขหลักที่ 4
-            const digit5 = Math.floor(Math.random() * 10); // ตัวเลขหลักที่ 5
-            const digit6 = Math.floor(Math.random() * 10); // ตัวเลขหลักที่ 6
-            
-            // ประกอบโครงสร้างความยาว 10 หลักปลอดภัยสูงสุด: 0XX-XXX-XXXX (เช่น 081-416-XXXX)
-            const userStr = "คุณลูกค้า: " + randomPrefix + "-" + digit4 + digit5 + digit6 + "-XXXX";
             const amountStr = getRandomAmount();
-
             return '<div class="order-item">' +
                     '<div class="item-left">' +
                         '<div class="item-icon">💲</div>' +
                         '<div class="item-info">' +
-                            '<div class="item-user">' + userStr + '</div>' +
+                            '<div class="item-user">' + generateRandomUser() + '</div>' +
                             '<div class="item-time">' + timeText + '</div>' +
                         '</div>' +
                     '</div>' +
@@ -410,18 +528,15 @@
         }
 
         const orderList = document.getElementById('orderList');
-
-        // แสดงผลรายการเริ่มต้นบนหน้าจอ
         orderList.innerHTML = 
             createRandomOrder("เมื่อสักครู่นี้") +
             createRandomOrder("1 นาทีที่แล้ว") +
             createRandomOrder("2 นาทีที่แล้ว") +
             createRandomOrder("4 นาทีที่แล้ว");
 
-        // หน่วงเวลาสุ่มสร้างรายการสั่งซื้อใหม่เรื่อย ๆ ทุก 30 - 90 วินาที
         function startOrderLoop() {
-            const minTime = 30000; 
-            const maxTime = 90000; 
+            const minTime = 20000; 
+            const maxTime = 60000; 
             const randomTime = Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime; 
 
             setTimeout(() => {
